@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Edit blog entry{% endblock %}
+{% block content %}
+    {% if not user.is_authenticated %}
+        <h3>You have to login to create a blog entry</h3>
+
+        <a href="{% url "ffc_admin:login" %}">Login</a>
+    {% elif edited %}
+        <h1>Blog entry edited</h1>
+    {% else %}
+        <h1>Edit a blog entry</h1>
+        <form action="." method="post">
+            {{ form.as_p }}
+            {% csrf_token %}
+        <input type="submit" value="Edit">
+        </form>
+    {% endif %}
+{% endblock %}

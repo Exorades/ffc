@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Create Pinsite{% endblock %}
+{% block content %}
+    {% if not user.is_authenticated %}
+        <h3>You have to login to create a site</h3>
+
+        <a href="{% url "ffc_admin:login" %}">Login</a>
+    {% elif created %}
+        <h1>Site created</h1>
+    {% else %}
+        <h1>Create a site</h1>
+        <form action="." method="post">
+            {{ form.as_p }}
+            {% csrf_token %}
+        <input type="submit" value="Create">
+        </form>
+    {% endif %}
+{% endblock %}

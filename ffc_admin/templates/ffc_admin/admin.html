@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Admin{% endblock %}
+{% block content %}
+    <h1>Admin</h1>
+
+    <ul>
+        <li><a href="{% url "ffc_admin:create_site" %}">Create site</a></li>
+        <li><a href="{% url "ffc_admin:homepage_edit" %}">Edit homepage</a></li>
+        <li><a href="{% url "ffc_admin:create_blog_entry" %}">Create blog entry</a></li>
+        <li><a href="{% url "ffc_admin:blog_entry_edit" %}">Edit blog entry</a></li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Pinsite list{% endblock %}
+{% block content %}
+{% for pinsite in pinsites %}
+    {{ pinsite.name }}
+    <a href="{{ pinsite.get_absolute_url }}">{{ pinsite.name }}</a>
+{% endfor %}
+
+{% include "ffc/pagination.html" with page=page_obj %}
+
+{% endblock %}

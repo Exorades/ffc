@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>{% block title %}{% endblock %}</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    {# Global stylesheets #}
+        <link rel="stylesheet" type="text/css" href="/static/css/free_for_charity.css">
+
+    {% block extra_css %}
+        {# Override this in templates to add extra stylesheets #}
+    {% endblock %}
+</head>
+<body>
+    <ul>
+        {% if not user.is_authenticated %}
+            <li><a href="{% url "ffc_admin:login" %}">Login</a></li>
+            <li><a href="{% url "ffc_admin:create_user" %}">Registration</a></li>
+        {% else %}
+            <li><a href="{% url "ffc_admin:logout" %}">Logout</a></li>
+        {% endif %}
+        <li><a href="{% url "ffc:pinsite_list" %}">Home</a></li>
+        <li><a href="{% url "ffc_admin:admin" %}">Admin</a></li>
+    </ul>
+    {% block content %}{% endblock %}
+
+    {# Global javascript #}
+        <script type="text/javascript" src="/static/js/free_for_charity.js"></script>
+    {% block extra_js %}
+        {# Override this in templates to add extra javascript #}
+    {% endblock %}
+</body>
+</html>
