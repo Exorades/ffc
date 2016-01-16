@@ -1,6 +1,41 @@
 {% extends "base.html" %}
+{% block title %}{{ pinsite.name }} Blog{% endblock %}
+{% block category_title %}{{ blog_entry.name }}{% endblock %}
+{% block subcategory_title %}{{ blog_entry.subtitle }}{% endblock %}
+{% block breadcrumb %}
+<ol class="breadcrumb">
+  <li><a href="{% url "ffc:pinsite_list" %}"><i class="fa fa-dashboard"></i> Home</a></li>
+  <li><a href="{{ blog_entry.index.get_absolute_url }}">{{ blog_entry.index.name }}</a></li>
+  <li><a href="{% url "ffc:blog_index" blog_entry.index.name %}">Blog</a></li>
+  <li class="active">{{ blog_entry.name }}</li>
+</ol>
+{% endblock %}
 {% block content %}
-<h2>{{ blog_entry.name }}</h1>
-<h3>{{ blog_entry.subtitle }}</h3>
-<p>{{ blog_entry.body }}</p>
+<div class="col-md-12">
+  <!-- Box Comment -->
+  <div class="box box-widget">
+    <div class='box-header with-border'>
+      <div class="box box-widget widget-user">
+        <div class="widget-user-header bg-black" style="background: url('/static/dist/img/photo2.png') center center no-repeat; background-size: 100% auto; height: 400px;">
+          <h3 class="widget-user-username">{{ blog_entry.name }}</h1>
+          <h4 class="widget-user-desc">{{ blog_entry.subtitle }}</h2>
+        </div>
+      </div>
+      <div class='user-block'>
+        <img class='img-circle' src='/static/dist/img/user1-128x128.jpg' alt='user image'>
+        {% if blog_entry.author.first_name and blog_entry.author.last_name %}
+          <span class='username'><a href="#">{{ blog_entry.author.first_name }} {{ blog_entry.author.last_name }}</a></span>
+        {% else %}
+          <span class='username'><a href="#">{{ blog_entry.author.username }}</a></span>
+        {% endif %}
+        <span class='description'>{{ blog_entry.updated_at|date }}</span>
+      </div><!-- /.user-block -->
+
+    </div><!-- /.box-header -->
+    <div class='box-body'>
+      <!-- post text -->
+      {{ blog_entry.body }}
+
+  </div><!-- /.box -->
+</div><!-- /.col -->
 {% endblock %}

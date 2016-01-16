@@ -1,19 +1,14 @@
 {% extends "base.html" %}
 {% block title %}{{ pinsite.name }}{% endblock %}
-
+{% block category_title %}{{ pinsite.homepage.subtitle }}{% endblock %}
+{% block subcategory_title %}{{ pinsite.name }}{% endblock %}
+{% block breadcrumb %}
+<ol class="breadcrumb">
+  <li><a href="{% url "ffc:pinsite_list" %}"><i class="fa fa-dashboard"></i> Home</a></li>
+  <li class="active">{{ pinsite.name }}</li>
+</ol>
+{% endblock %}
 {% block content %}
-<h1>{{ pinsite.name }}</h1>
-<h2>Homepage</h2>
-<h3>{{ pinsite.homepage.name }}</h3>
-<p>{{ pinsite.homepage.subtitle }}</p>
 <p>{{ pinsite.homepage.history }}</p>
-
-<h2>Blog posts:</h2>
-{% for blog_post in pinsite.blogentry_set.all %}
-    <h3><a href="{{ blog_post.slug }}">{{ blog_post.name }}</a></h3>
-    <p>{{ blog_post.subtitle }}</p>
-{% endfor %}
-
-{% include "ffc/pagination.html" with page=posts %}
 
 {% endblock %}

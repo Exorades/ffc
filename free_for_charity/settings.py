@@ -37,6 +37,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'free_for_charity',
     'ffc',
     'ffc_admin',
 )
@@ -104,3 +105,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 LOGIN_REDIRECT_URL = '/ffc/'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+]

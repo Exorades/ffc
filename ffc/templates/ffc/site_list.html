@@ -1,5 +1,10 @@
 {% extends "base.html" %}
 {% block title %}Pinsite list{% endblock %}
+{% block breadcrumb %}
+<ol class="breadcrumb">
+  <li><a href="{% url "ffc:pinsite_list" %}"><i class="fa fa-dashboard"></i>Home</a></li>
+</ol>
+{% endblock %}
 {% block content %}
 {% for pinsite in pinsites %}
     {{ pinsite.name }}

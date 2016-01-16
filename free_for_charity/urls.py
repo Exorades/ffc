@@ -19,11 +19,9 @@ from django.contrib import admin
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(
-        r'^ffc/', include(
-            'ffc.urls',
-            namespace='ffc',
-            app_name='ffc'
-        )
+        r'^ffc/',
+        include('ffc.urls', namespace='ffc', app_name='ffc',),
+        name='ffc',
     ),
     url(
         r'^ffc_admin/', include(

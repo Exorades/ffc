@@ -22,6 +22,20 @@ class PinSiteListView(ListView):
 class PinSiteDetailView(TemplateView):
     template_name = 'ffc/site_detail.html'
 
+    def get(self, request, pinsite):
+        pinsite_data = get_object_or_404(PinSite, slug=pinsite)
+        return render(
+            request,
+            self.template_name,
+            {
+                'pinsite': pinsite_data,
+            }
+        )
+
+
+class BlogIndexListView(TemplateView):
+    template_name = 'ffc/blog_index.html'
+
     def post_list(self, request, pinsite_data):
         object_list = pinsite_data.blogentry_set.all()
         paginator = Paginator(object_list, 5)
@@ -46,13 +60,6 @@ class PinSiteDetailView(TemplateView):
                 'posts': posts
             }
         )
-
-
-# class BlogIndexListView(ListView):
-#     queryset = PinSite.objects.all()
-#     context_object_name = 'PIN SITES'
-#     paginate_by = 5
-#     template_name = 'ffc/site_list.html'
 
 
 class BlogEntryView(TemplateView):
